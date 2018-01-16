@@ -20,12 +20,14 @@ class ViewController: BaseVC,UITextFieldDelegate{
         initialise()
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(applicationDidBecomeActive),name: .UIApplicationDidBecomeActive,object: nil)
-        
+        NotificationCenter.default.addObserver(self, selector: #selector(applicationdidEnterBackGround), name: .UIApplicationDidEnterBackground, object: nil)
         // self
         // Do any additional setup after loading the view, typically from a nib.
     }
 
-    
+     @objc func applicationdidEnterBackGround(){
+        lastRefreshedTime = Date()
+    }
     func initialise(){
         self.tipTextField.text = "$ "
         self.totalAmountLabel.text = ""
